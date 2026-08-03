@@ -1,0 +1,30 @@
+replicaCount: 2
+
+image:
+  repository: nginx
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: LoadBalancer
+  port: 80
+
+application:
+  enabled: true
+
+sharedIngress:
+  enabled: true
+  className: gce
+
+  routes:
+    - path: /dev
+      pathType: Prefix
+      service: nginx-dev
+
+    - path: /qa
+      pathType: Prefix
+      service: nginx-qa
+
+    - path: /
+      pathType: Prefix
+      service: nginx-prod

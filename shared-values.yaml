@@ -1,0 +1,5 @@
+application:
+  enabled: false
+
+sharedIngress:
+  enabled: true
