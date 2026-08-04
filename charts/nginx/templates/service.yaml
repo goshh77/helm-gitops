@@ -1,3 +1,4 @@
+harsha_c2k4@cloudshell:~/helm-gitops/charts/nginx/templates (harsha-503911)$ cat service.yaml 
 {{- if .Values.application.enabled }}
 apiVersion: v1
 kind: Service
@@ -17,3 +18,4 @@ spec:
       targetPort: {{ .Values.service.port }}
       protocol: TCP
 {{- end }}
+harsha_c2k4@cloudshell:~/helm-gitops/charts/nginx/templates (harsha-503911)$ 
