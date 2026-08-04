@@ -3,6 +3,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Release.Name }}
+  labels:
+    app: {{ .Release.Name }}
 
 spec:
   replicas: {{ .Values.replicaCount }}
@@ -18,33 +20,33 @@ spec:
 
     spec:
       containers:
-      - name: nginx
-        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        - name: nginx
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
 
-        env:
-        - name: DB_USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: db-secret
-              key: username
+          ports:
+            - containerPort: {{ .Values.service.port }}
 
-        - name: DB_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: db-secret
-              key: password
+          env:
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: username
 
-        volumeMounts:
-        - name: db-secret-volume
-          mountPath: /etc/secrets
-          readOnly: true
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: password
 
-        ports:
-        - containerPort: 80
+          volumeMounts:
+            - name: db-secret-volume
+              mountPath: /etc/secrets
+              readOnly: true
 
       volumes:
-      - name: db-secret-volume
-        secret:
-          secretName: db-secret
+        - name: db-secret-volume
+          secret:
+            secretName: db-secret
 {{- end }}

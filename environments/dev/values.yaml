@@ -1,23 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: nginx
   tag: latest
-  pullPolicy: IfNotPresent
 
 service:
   type: ClusterIP
-  port: 80
-
-ingress:
-  enabled: true
-  className: gce
-  host: ""
-  paths:
-    - path: /dev
-      pathType: Prefix
-
-
-sharedIngress:
-  enabled: false
-

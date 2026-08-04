@@ -1,20 +1,32 @@
-{{- if .Values.sharedIngress.enabled }}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: shared-ingress
 spec:
-  ingressClassName: {{ .Values.sharedIngress.className }}
+  ingressClassName: gce
   rules:
     - http:
         paths:
-{{- range .Values.sharedIngress.routes }}
-          - path: {{ .path }}
-            pathType: {{ .pathType }}
+          - path: /dev
+            pathType: Prefix
             backend:
               service:
-                name: {{ .service }}
+                name: nginx-dev
                 port:
                   number: 80
-{{- end }}
-{{- end }}
+
+          - path: /qa
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx-qa
+                port:
+                  number: 80
+
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx-prod
+                port:
+                  number: 80
