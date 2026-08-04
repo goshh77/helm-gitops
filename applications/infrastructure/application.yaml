@@ -11,6 +11,8 @@ spec:
     repoURL: https://github.com/goshh77/helm-gitops.git
     targetRevision: main
     path: infrastructure
+    directory:
+      recurse: true
 
   destination:
     server: https://kubernetes.default.svc
