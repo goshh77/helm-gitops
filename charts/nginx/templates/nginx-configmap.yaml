@@ -12,16 +12,6 @@ data:
       root /usr/share/nginx/html;
       index index.html;
 
-      location /dev {
-        rewrite ^/dev/?(.*)$ /$1 break;
-        try_files $uri $uri/ /index.html;
-      }
-
-      location /qa {
-        rewrite ^/qa/?(.*)$ /$1 break;
-        try_files $uri $uri/ /index.html;
-      }
-
       location / {
         try_files $uri $uri/ /index.html;
       }
