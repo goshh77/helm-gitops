@@ -1,6 +1,6 @@
 image:
   repository: us-central1-docker.pkg.dev/harsha-gcp-505210/repo-1
-  tag: 8fdfb9315e7d9482ba8daf68a9ebbc6d09275582
+  tag: v1
   pullPolicy: IfNotPresent
 
 application:
