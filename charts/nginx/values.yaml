@@ -1,6 +1,6 @@
 image:
   repository: us-central1-docker.pkg.dev/harsha-gcp-505210/repo-1/nginx-app
-  tag: v1
+  tag: v2
   pullPolicy: IfNotPresent
 
 application:
