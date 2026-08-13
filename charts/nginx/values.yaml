@@ -1,5 +1,5 @@
 image:
-  repository: us-central1-docker.pkg.dev/harsha-gcp-505210/repo-1/nginx-app:v1
+  repository: us-central1-docker.pkg.dev/harsha-gcp-505210/repo-1/nginx-app
   tag: v1
   pullPolicy: IfNotPresent
 
